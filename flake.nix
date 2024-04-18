@@ -16,6 +16,31 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix.url = "github:NixOS/nix/2.21.2";
+    gitignore= {
+      url="github:hercules-ci/gitignore";
+      inputs.nixpkgs.follows="nixpkgs";
+    };
+
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs";
+        flake-utils.follows="flake-utils";
+        flake-compat.follows="flake-compat";
+        gitignore.follows="gitignore";
+      };
+    };
+
+    cachix = {
+      url= "github:cachix/cachix";
+      inputs = {
+        devenv.follows="devenv";
+        pre-commit-hooks.follows="pre-commit-hooks";
+        nixpkgs.follows="nixpkgs";
+        flake-compat.follows="flake-compat";
+      };
+    };
 
     devenv = {
       url = "github:cachix/devenv/latest";
@@ -23,6 +48,8 @@
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows ="flake-compat";
         nix.follows = "nix";
+        cachix.follows = "cachix";
+        pre-commit-hooks.follows="pre-commit-hooks";
       };
     };
 
