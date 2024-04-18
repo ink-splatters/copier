@@ -5,11 +5,11 @@
     # HACK https://github.com/NixOS/nix/issues/6771
     # TODO Leave only own cache settings when fixed
     extra-trusted-public-keys = [
-      "copier.cachix.org-1:sVkdQyyNXrgc53qXPCH9zuS91zpt5eBYcg7JQSmTBG4="
+      "aarch64-darwin.cachix.org-1:mEz8A1jcJveehs/ZbZUEjXZ65Aukk9bg2kmb0zL9XDA="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
     ];
     extra-substituters = [
-      "https://copier.cachix.org"
+      "https://aarch64-darwin.cachix.org"
       "https://devenv.cachix.org"
     ];
   };
