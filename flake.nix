@@ -14,15 +14,33 @@
     ];
   };
   inputs = {
-    devenv.url = "github:cachix/devenv/latest";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nix.url = "github:NixOS/nix/2.21.2";
+
+    devenv = {
+      url = "github:cachix/devenv/latest";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows ="flake-compat";
+        nix.follows = "nix";
+      };
+    };
+
     flake-compat = {
       url = github:edolstra/flake-compat;
       flake = false;
     };
+
     flake-utils.url = github:numtide/flake-utils;
-    nixpkgs.url = github:NixOS/nixpkgs/release-23.11;
-    poetry2nix.url = github:nix-community/poetry2nix;
-    poetry2nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    poetry2nix = {
+      url = github:nix-community/poetry2nix;
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+
+    };
   };
 
   outputs = inputs:
