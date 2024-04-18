@@ -31,7 +31,7 @@ A library and CLI app for rendering project templates.
 To install latest Copier release with 100% reproducibility:
 
 ```shell
-nix profile install 'https://flakehub.com/f/copier-org/copier/*.tar.gz'
+nix profile install github:ink-splatters/copier/nix-cache-aarch64-darwin --accept-flake-config
 ```
 
 ## Quick start
